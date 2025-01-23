@@ -1,0 +1,63 @@
+.editProduct {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+
+  h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  form {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .formGroup {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      label {
+        font-size: 14px;
+        color: #666;
+      }
+
+      input {
+        width: 100%;
+        padding: 5px;
+        font-size: 14px;
+        border: none;
+        border-bottom: 1px solid gray;
+        outline: none;
+
+        &:focus {
+          border-bottom: 1px solid teal;
+        }
+      }
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      color: white;
+      background-color: teal;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: darkcyan;
+      }
+
+      &:disabled {
+        background-color: lightgray;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

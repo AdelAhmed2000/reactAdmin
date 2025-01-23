@@ -43,39 +43,22 @@ const Datatable = () => {
       console.log(err);
     }
   };
-  const handleEdit = async (id, updatedData) => {
-    try {
-      await updateDoc(doc(db, "products", id), {
-        ...updatedData,
-      });
-      setData(
-        data.map((item) =>
-          item.id === id ? { ...item, ...updatedData } : item
-        )
-      );
-      console.log(updatedData);
-    } catch (err) {
-      console.log(err);
-    }
-  };
   const actionColumn = [
     {
       field: "action",
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
+        console.log(params.row.id);
         return (
           <div className="cellAction">
-            <Link style={{ textDecoration: "none" }}>
-              <div
-                className="viewButton"
-                onClick={() =>
-                  handleEdit(params.row.id, { title: "Updated Name" })
-                }
-              >
-                Edite
-              </div>
+            <Link
+              to={`/products/${params.row.id}`}
+              style={{ textDecoration: "none" }}
+            >
+              <div className="viewButton">Edit</div>
             </Link>
+
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}

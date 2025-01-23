@@ -9,6 +9,7 @@ import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
+import EditProduct from "./components/datatable/EditProduct";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -57,6 +58,16 @@ function App() {
                 }
               />
             </Route>
+          </Route>
+          <Route>
+            <Route
+              path="/products/:id"
+              element={
+                <RequireAuth>
+                  <EditProduct />
+                </RequireAuth>
+              }
+            />
           </Route>
         </Routes>
       </BrowserRouter>
