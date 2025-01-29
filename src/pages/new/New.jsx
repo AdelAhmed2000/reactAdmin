@@ -69,7 +69,7 @@ const New = ({ inputs, title }) => {
       setStatus("Uploading...");
       const productId = data.id || `${new Date().getTime()}`;
       const productDoc = doc(db, "products", productId);
-      await setDoc(productDoc, { ...data, timeStamp: serverTimestamp() });
+      await setDoc(productDoc, { ...data });
       setStatus("Success! Product added.");
       navigate(-1);
     } catch (e) {
@@ -126,7 +126,6 @@ const New = ({ inputs, title }) => {
                 <select id="category" onChange={handleInput} defaultValue="">
                   <option value="" disabled>
                     Select a category
-                    
                   </option>
                   <option value="winter">Winter</option>
                   <option value="summer">Summer</option>

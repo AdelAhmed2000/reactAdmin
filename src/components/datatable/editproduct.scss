@@ -1,8 +1,198 @@
+// .editProduct {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   padding: 20px;
+
+//   h1 {
+//     font-size: 24px;
+//     color: #333;
+//     margin-bottom: 20px;
+//   }
+
+//   form {
+//     width: 100%;
+//     max-width: 500px;
+//     display: flex;
+//     flex-direction: column;
+//     gap: 20px;
+
+//     .formGroup {
+//       display: flex;
+//       flex-direction: column;
+//       gap: 5px;
+
+//       label {
+//         font-size: 14px;
+//         color: #666;
+//       }
+
+//       input {
+//         width: 100%;
+//         padding: 5px;
+//         font-size: 14px;
+//         border: none;
+//         border-bottom: 1px solid gray;
+//         outline: none;
+
+//         &:focus {
+//           border-bottom: 1px solid teal;
+//         }
+//       }
+
+//       select {
+//         width: 100%;
+//         padding: 5px;
+//         border: none;
+//         border-bottom: 1px solid gray;
+//         background-color: transparent;
+//         font-size: 16px;
+//         outline: none;
+//         cursor: pointer;
+//       }
+
+//       select {
+//         appearance: none;
+//         -moz-appearance: none;
+//         -webkit-appearance: none;
+//       }
+//     }
+
+//     button {
+//       padding: 10px 20px;
+//       font-size: 16px;
+//       color: white;
+//       background-color: teal;
+//       border: none;
+//       border-radius: 5px;
+//       cursor: pointer;
+
+//       &:hover {
+//         background-color: darkcyan;
+//       }
+
+//       &:disabled {
+//         background-color: lightgray;
+//         cursor: not-allowed;
+//       }
+//     }
+//   }
+// }
+///////////////////////////////////////////////////////
+
+// .editProduct {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   padding: 20px;
+//   background-color: #f9f9f9;
+//   border-radius: 16px;
+//   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+//   h1 {
+//     font-size: 24px;
+//     color: #333;
+//     margin-bottom: 20px;
+//   }
+
+//   form {
+//     width: 100%;
+//     max-width: 600px;
+//     display: flex;
+//     flex-direction: column;
+//     gap: 20px;
+
+//     .formGroup {
+//       display: flex;
+//       flex-direction: column;
+//       gap: 10px;
+
+//       label {
+//         font-size: 16px;
+//         font-weight: 600;
+//         color: #555;
+//       }
+
+//       input,
+//       select {
+//         padding: 12px 16px;
+//         font-size: 14px;
+//         border: 1px solid #ddd;
+//         border-radius: 8px;
+//         outline: none;
+//         transition: all 0.3s ease;
+
+//         &:focus {
+//           border-color: #007bff;
+//           box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+//         }
+//       }
+
+//       // رفع الصورة
+//       input[type="file"] {
+//         padding: 0;
+//         border: none;
+//         background-color: transparent;
+//         font-size: 14px;
+//         cursor: pointer;
+//         color: #007bff;
+
+//         &::-webkit-file-upload-button {
+//           padding: 8px 16px;
+//           background-color: #007bff;
+//           color: #fff;
+//           border: none;
+//           border-radius: 8px;
+//           font-size: 14px;
+//           cursor: pointer;
+//           transition: background-color 0.3s ease;
+
+//           &:hover {
+//             background-color: #0056b3;
+//           }
+//         }
+//       }
+
+//       .previewImage {
+//         margin-top: 10px;
+//         max-width: 100%;
+//         border-radius: 8px;
+//         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+//       }
+
+//       p {
+//         font-size: 14px;
+//         color: #666;
+//         margin-top: 5px;
+//       }
+//     }
+
+//     button {
+//       padding: 12px 16px;
+//       background-color: #007bff;
+//       color: #fff;
+//       border: none;
+//       border-radius: 8px;
+//       font-size: 16px;
+//       font-weight: 600;
+//       cursor: pointer;
+//       transition: background-color 0.3s ease;
+
+//       &:hover {
+//         background-color: #0056b3;
+//       }
+//     }
+//   }
+// }
+ /////////////////////////////////////////////////////
 .editProduct {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
   h1 {
     font-size: 24px;
@@ -12,7 +202,7 @@
 
   form {
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -20,43 +210,81 @@
     .formGroup {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 10px;
 
       label {
-        font-size: 14px;
-        color: #666;
+        font-size: 16px;
+        font-weight: 600;
+        color: #555;
       }
 
-      input {
-        width: 100%;
-        padding: 5px;
+      input,
+      select {
+        padding: 12px 16px;
         font-size: 14px;
-        border: none;
-        border-bottom: 1px solid gray;
+        border: 1px solid #ddd;
+        border-radius: 8px;
         outline: none;
+        transition: all 0.3s ease;
 
         &:focus {
-          border-bottom: 1px solid teal;
+          border-color: #007bff;
+          box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
+      }
+
+      // رفع الصورة
+      input[type="file"] {
+        padding: 0;
+        border: none;
+        background-color: transparent;
+        font-size: 14px;
+        cursor: pointer;
+        color: #007bff;
+
+        &::-webkit-file-upload-button {
+          padding: 8px 16px;
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          border-radius: 8px;
+          font-size: 14px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: #0056b3;
+          }
+        }
+      }
+
+      .previewImage {
+        margin-top: 10px;
+        max-width: 250px; // تصغير حجم الصورة
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      p {
+        font-size: 14px;
+        color: #666;
+        margin-top: 5px;
       }
     }
 
     button {
-      padding: 10px 20px;
-      font-size: 16px;
-      color: white;
-      background-color: teal;
+      padding: 12px 16px;
+      background-color: #007bff;
+      color: #fff;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
       cursor: pointer;
+      transition: background-color 0.3s ease;
 
       &:hover {
-        background-color: darkcyan;
-      }
-
-      &:disabled {
-        background-color: lightgray;
-        cursor: not-allowed;
+        background-color: #0056b3;
       }
     }
   }

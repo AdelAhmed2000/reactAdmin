@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
-// import { useParams, useNavigate } from "react-router-dom";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import "./editproduct.scss"; // ملف الاستايل الخاص بالصفحة
-import { db } from "../../firebase";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { db, storage } from "../../firebase";
 import { useNavigate, useParams } from "react-router-dom";
+import "./editproduct.scss"; // ملف الاستايل الخاص بالصفحة
 
 const EditProduct = () => {
   const { id } = useParams(); // جلب الـ id من الرابط
   const navigate = useNavigate(); // للتنقل بين الصفحات
   const [productData, setProductData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  console.log(id);
-   console.log("Product ID:", id);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   // جلب بيانات المنتج
   useEffect(() => {
@@ -55,6 +54,33 @@ const EditProduct = () => {
     setProductData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // رفع الصورة وتحديث الرابط
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const storageRef = ref(storage, `products/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setUploadProgress(progress);
+        console.log(`Upload is ${progress}% done`);
+      },
+      (error) => {
+        console.error("Upload error:", error);
+      },
+      async () => {
+        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+        setProductData((prev) => ({ ...prev, img: downloadURL }));
+        console.log("File available at", downloadURL);
+      }
+    );
+  };
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -67,8 +93,8 @@ const EditProduct = () => {
           <label>Product Name</label>
           <input
             type="text"
-            name="name"
-            value={productData.name || ""}
+            name="title"
+            value={productData.title || ""}
             onChange={handleChange}
           />
         </div>
@@ -82,22 +108,43 @@ const EditProduct = () => {
           />
         </div>
         <div className="formGroup">
-          <label>Category</label>
+          <label htmlFor="category">Category</label>
+          <select
+            id="category"
+            name="category"
+            onChange={handleChange}
+            value={productData.category || ""}
+          >
+            <option value="" disabled>
+              Select a category
+            </option>
+            <option value="winter">Winter</option>
+            <option value="summer">Summer</option>
+            <option value="womensBags">WomensBags</option>
+            <option value="mobileAccessories">MobileAccessories</option>
+            <option value="sports-accessories">Sports-accessories</option>
+            <option value="shoes">Shoes</option>
+            <option value="sale">Sale</option>
+          </select>
+        </div>
+        <div className="formGroup">
+          <label>Description</label>
           <input
             type="text"
-            name="category"
-            value={productData.category || ""}
+            name="description"
+            value={productData.description || ""}
             onChange={handleChange}
           />
         </div>
         <div className="formGroup">
-          <label>Image URL</label>
-          <input
-            type="text"
-            name="img"
-            value={productData.img || ""}
-            onChange={handleChange}
-          />
+          <label>Upload Image</label>
+          <input type="file" onChange={handleImageUpload} />
+          {uploadProgress > 0 && (
+            <p>Upload Progress: {Math.round(uploadProgress)}%</p>
+          )}
+          {productData.img && (
+            <img src={productData.img} alt="Product" className="previewImage" />
+          )}
         </div>
         <button type="submit">Save</button>
       </form>
